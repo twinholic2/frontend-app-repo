@@ -76,4 +76,17 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: yq -i '.image.tag = "${{ env.IMAGE_TAG }}"' values.yaml    
+
+      - name: Commit files
+        run: |
+          git config --local user.email "odark@naver.com"
+          git config --local user.name "twinholic2"
+          git commit -a -m "Add changes"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ env.GIT_ACCESS_TOKEN }}
+          repository: ${{ env.GIT_REPO }}
+          force: true          
    
