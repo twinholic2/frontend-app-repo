@@ -42,7 +42,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: front-app
-          IMAGE_TAG: ${{ steps.image.ouputs.version }}
+          IMAGE_TAG: ${{ steps.image.outputs.version }}
         run: |
           echo "ecr_repository=$ECR_REPOSITORY" >> "$GITHUB_OUTPUT"
           echo "image_tag=$IMAGE_TAG" >> "$GITHUB_OUTPUT"
