@@ -35,7 +35,7 @@ jobs:
         run: |
           VERSION=$(echo ${{ github.sha }} | cut -c1-5)
           echo VERSION=$VERSION
-          echo "::set-output name=version::$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
@@ -44,8 +44,8 @@ jobs:
           ECR_REPOSITORY: front-app
           IMAGE_TAG: ${{ steps.image.ouputs.version }}
         run: |
-          echo "::set-output name=ecr_repository::$ECR_REPOSITORY"
-          echo "::set-output name=image_tag::$IMAGE_TAG"
+          echo "ecr_repository=$ECR_REPOSITORY" >> "$GITHUB_OUTPUT"
+          echo "image_tag=$IMAGE_TAG" >> "$GITHUB_OUTPUT"
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
