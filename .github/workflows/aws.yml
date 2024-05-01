@@ -41,7 +41,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: oshyun_app_repo
+          ECR_REPOSITORY: frontend-app-repo
           IMAGE_TAG: ${{ steps.image.outputs.version }}
         run: |
           echo "ecr_repository=$ECR_REPOSITORY" >> "$GITHUB_OUTPUT"
