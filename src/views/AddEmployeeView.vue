@@ -44,7 +44,8 @@ export default {
             lastName: this.lastName,
             email: this.email
         }
-        var url = 'http://localhost:8080/api/employee/add';
+        //var url = 'http://localhost:8080/api/employee/add';
+        var url = 'https://api.oshyun.com/api/employee/add';
 
         axios.post(url, data)
                 .then( (response) => {
